@@ -17,8 +17,13 @@ async def root():
 
 @app.post("/predict")
 async def predict(features: HeartFeatures):
-    data = np.array([[features.size, features.bedrooms, features.age]])
-    preprocessed = preprocessing(data)
+    # Preprocess: convert to dataframe
+    df = preprocessing(features)
+
+    # Load model
     model = load_model()
-    prediction = model.predict(preprocessed)
-    return {"Predicted Price": prediction[0]}
+
+    # Predict
+    prediction = model.predict(df)
+
+    return {"prediction": int(prediction[0])}

@@ -12,7 +12,7 @@ app = FastAPI(
 
 @app.get("/")
 async def root():
-    return {"message": "API WORKING"}
+    return {"message": "One end point for heart disease model"}
 
 
 @app.post("/predict")
